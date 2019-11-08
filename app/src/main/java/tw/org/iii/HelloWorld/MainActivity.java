@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.HashSet;
+import java.util.TreeSet;
+
 public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private Button buttonClick;
@@ -21,8 +24,18 @@ public class MainActivity extends AppCompatActivity {
         buttonClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("DCH", "OK");
+                //Log.v("DCH", "OK"); //確認按鈕正常
+                showLottery();
             }
         });
+    }
+
+    //產生樂透號碼 1~50 並從小到大排出
+    private  void showLottery() {
+        TreeSet<Integer> set = new TreeSet<>(); //值不重複
+        while (set.size() < 6) {
+            set.add((int)(Math.random()*49+1));
+        }
+        textView.setText(set.toString());
     }
 }
